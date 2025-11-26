@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  .slider {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+    img {
+      display: none;
+    }
+  }
+
+  img.active {
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+
+
+  .btn {
+    position: absolute;
+    padding: 10px;
+  }
+
+  .btn-prev {
+    left: 10px;
+    top: 400px
+  }
+
+  .btn-next {
+    right: 10px;
+    top: 400px;
+  }
+</style>
+
+
+<body>
+  <h1>Slider</h1>
+
+  <div class="slider">
+    <img
+      src="https://th.bing.com/th/id/R.4c21d7bdbc6c39a6bdc20371cb78fa34?rik=Iw8raKFAiMp8wQ&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fb%2f8%2fd%2f951320-download-dragon-ball-z-hd-wallpapers-1920x1080-download-free.jpg&ehk=PJUB1y33yyi8reTEt2Z96u4zl2cgi%2bqYnVfWPBFU%2fvQ%3d&risl=&pid=ImgRaw&r=0"
+      alt="" class="active">
+    <img src="https://wallpapercave.com/wp/BM9l0H9.jpg" alt="">
+    <img src="https://images2.alphacoders.com/686/686153.jpg" alt="">
+    <img src="https://www.gratistodo.com/wp-content/uploads/2016/02/Dragon-Ball-Z-Wallpapers-HD-9.jpg" alt="">
+
+
+    <button class="btn-prev btn">prev</button>
+    <button class="btn-next btn">next</button>
+
+  </div>
+
+  <script>
+    const slider = {
+      images: document.querySelectorAll(".slider img"),
+      index: 0,
+
+      showimg() {
+        this.images.forEach(img => img.classList.remove("active"));
+
+        this.images[this.index].classList.add("active")
+      },
+      next() {
+        this.index = (this.index + 1) % this.images.length
+        this.showimg()
+      },
+      prev() {
+        this.index = (this.index - 1 + this.images.length) % this.images.length
+        this.showimg()
+      }
+    }
+    document.querySelector(".btn-prev").addEventListener("click", () => {
+      slider.prev()
+    })
+    document.querySelector(".btn-next").addEventListener("click", () => {
+      slider.next()
+    })
+
+    setInterval(() => slider.next(), 3000);
+
+  </script>
+</body>
+
+</html>
+
